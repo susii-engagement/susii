@@ -261,16 +261,23 @@ font-family: 'Cinzel Decorative', cursive;
   padding:60px clamp(200px,23vw,360px);
   position:relative;
 }
-
+.page-section::after{
+content:'';
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:80px;
+background:linear-gradient(transparent,#f8f2ec);
+}
 /* ============================================================
    INVITE CONTENT
    ============================================================ */
-.invite-inner {
-  text-align:center;
-  width:100%;
-  max-width:760px;
-  position:relative;
-  z-index:5;
+.invite-inner{
+  background:rgba(255,250,246,.82);
+  border-radius:36px;
+  padding:24px 18px;
+  box-shadow:0 10px 40px rgba(0,0,0,.06);
 }
 
 /* reveal animation driven by JS */
@@ -316,7 +323,7 @@ font-family: 'Cinzel Decorative', cursive;
 }
 @font-face {
   font-family: 'Ma3shooqi';
-  src: url('./all-exp03-ma3shooqi.otf') format('opentype');
+  src: url('./assets/all-exp03-ma3shooqi.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -333,7 +340,7 @@ font-size: clamp(34px, 5.5vw, 66px);  font-weight: 300;   /* غالبًا خلي
 }
 @font-face {
   font-family: 'Panorama Naskh';
-  src: url('./nt-panorama-naskh-long.otf') format('opentype');
+  src: url('./assets/nt-panorama-naskh-long.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
@@ -452,7 +459,7 @@ font-size: clamp(34px, 5.5vw, 66px);  font-weight: 300;   /* غالبًا خلي
 }
 
 .venue-card h2 {
-  font-family:'Cormorant Garamond', serif;
+  font-family:'Amiri', serif;
   font-size:clamp(32px,5vw,52px);
   font-weight:300;
   color:#7b2c2c;
@@ -498,9 +505,10 @@ font-size: clamp(34px, 5.5vw, 66px);  font-weight: 300;   /* غالبًا خلي
   .flower-panel { width:70px; }
 
   /* 🔥 أهم تعديل هنا */
-  .page-section {
-    padding:40px 14px;  /* يخليها تملى الشاشة */
-  }
+  .page-section{
+  padding: 24px 16px !important;
+  min-height: auto;
+}
 
   .sf-tl,.sf-tr,.sf-bl,.sf-br {
     width:220px;
@@ -534,13 +542,35 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 }
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: wordShow .5s ease forwards;
+}
 
+@keyframes wordShow {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 body{
 font-family:'Aref Ruqaa',serif;
 background:#f9f4ef;
 overflow-x:hidden;
 }
-
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  opacity:.12;
+  background-image:
+    radial-gradient(circle at 20% 30%, #d9c2a3 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, #f1ddd1 0%, transparent 18%);
+}
 .hidden{
 display:none !important;
 }
@@ -819,15 +849,10 @@ font-size:22px;
   object-fit:contain;
 }
 .countdown-card{
-  background:rgba(255,255,255,.75);
-  backdrop-filter:blur(10px);
-  padding:50px 35px;
-  border-radius:30px;
-  text-align:center;
-  box-shadow:0 20px 50px rgba(123,44,44,.08);
-  width:min(850px,95%);
+  background:rgba(255,255,255,.88);
+  backdrop-filter:blur(18px);
+  box-shadow:0 20px 45px rgba(123,44,44,.12);
 }
-
 .countdown-card h2{
   font-size:clamp(32px,5vw,54px);
   color:#7b2c2c;
@@ -954,12 +979,10 @@ font-size:22px;
     padding: 42px 18px !important;
   }
 
-  .invite-inner,
-  .venue-card,
-  .countdown-card {
-    width: 100%;
-    max-width: 100%;
-  }
+ .invite-inner{
+  width:min(96vw, 430px);
+  margin:auto;
+}
 
   /* splash */
   .splash-title {
@@ -989,11 +1012,9 @@ font-size:22px;
     margin: 26px 0 12px;
   }
 
-  .name-ar,
-  .name-ar1 {
-    font-size: clamp(48px, 13vw, 72px);
-    line-height: 1.15;
-  }
+  .name-ar,.name-ar1{
+  text-shadow:0 3px 12px rgba(123,44,44,.12);
+}
 
   .name-amp {
     font-size: 28px;
@@ -1096,9 +1117,73 @@ font-size:22px;
     font-size: 12px;
   }
 }
+#blessing-section{
+  min-height: 70vh;
+  background:
+    linear-gradient(to bottom, #fdf9f4, #f8eee5);
+}
+
+#blessing-section{
+  min-height:auto;
+  padding:28px 16px 40px;
+}
+
+.blessing-box{
+  text-align:center;
+  max-width:520px;
+  margin:auto;
+  padding:24px 18px;
+  border-radius:28px;
+
+  background:rgba(255,250,246,.72);
+  backdrop-filter:blur(10px);
+
+  box-shadow:0 10px 35px rgba(123,44,44,.06);
+  border:1px solid rgba(196,168,130,.22);
+
+  animation: softBreath 4s ease-in-out infinite;
+}
+
+.blessing-box h2{
+  font-family:'Panorama Naskh', serif;
+  font-size:clamp(28px,7vw,46px);
+  color:#7b2c2c;
+  margin:8px 0 12px;
+  line-height:1.6;
+}
+
+.blessing-box p{
+  font-family:'Amiri', serif;
+  font-size:clamp(16px,4vw,22px);
+  color:#9a7050;
+  line-height:1.9;
+  max-width:90%;
+  margin:auto;
+}
+
+.bless-sign{
+  display:block;
+  margin-top:28px;
+  font-family:'Cormorant Garamond', serif;
+  font-size:28px;
+  color:#c4a882;
+  font-style:italic;
+  letter-spacing:2px;
+  opacity:.9;
+}
+
+@keyframes softBreath{
+  0%,100%{
+    transform:translateY(0);
+  }
+  50%{
+    transform:translateY(-6px);
+  }
+}
 </style>
 </head>
 <body>
+  
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
@@ -1150,9 +1235,7 @@ font-size:22px;
   <div class="page-section" id="invite-section">
     <div class="invite-inner">
       <div class="orn reveal">
-        <div class="orn-line l"></div>
-        <div class="orn-gem"></div>
-        <div class="orn-line r"></div>
+        
       </div>
 <div style="width:100%; display:flex; justify-content:center; align-items:center; margin:0; padding:0;">
 <img src="flower.png" style="width:clamp(140px,20vw,220px); height:auto; object-fit:contain;" alt="flower"></div>
@@ -1251,7 +1334,22 @@ font-size:22px;
 
 </div>
 </div><!-- /main-page -->
+<div class="page-section" id="blessing-section">
+  <div class="blessing-box reveal">
+    <div class="orn">
+      
+    </div>
 
+    <h2> النهاية؟ </h2>
+    <p>
+       بل هي أول خطوة في رحلة العمر…
+ونتمنى أن تكونوا أول من يشاركنا سطورها.
+        
+    </p>
+
+
+  </div>
+</div>
 <!-- ====================================================
      SCRIPTS
 ===================================================== -->
@@ -1460,6 +1558,36 @@ setInterval(() => {
   document.getElementById("minutes").innerHTML = minutes;
   document.getElementById("seconds").innerHTML = seconds;
 }, 1000);
+window.addEventListener("scroll", () => {
+  const y = window.scrollY;
+
+  const left = document.querySelector(".flower-panel.left");
+  const right = document.querySelector(".flower-panel.right");
+
+  if(left) left.style.transform = `translateY(${y*0.12}px)`;
+  if(right) right.style.transform = `translateY(${y*0.12}px) scaleX(-1)`;
+});
+function splitWords(el){
+  const text = el.textContent.trim();
+  const words = text.split(" ");
+
+  el.innerHTML = words
+    .map((word, i) =>
+      `<span class="word" style="animation-delay:${i * 0.18}s">${word}&nbsp;</span>`
+    )
+    .join("");
+}
+
+document.querySelectorAll(".word-reveal").forEach(splitWords);
+window.addEventListener("scroll", () => {
+  const section = document.getElementById("blessing-section");
+  if(!section) return;
+
+  const rect = section.getBoundingClientRect();
+  const fade = Math.max(0, Math.min(1, 1 - (window.innerHeight - rect.top) / 500));
+
+  section.style.opacity = 1 - fade * 0.5;
+});
 </script>
 </body>
 </html>
